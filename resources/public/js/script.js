@@ -48,15 +48,15 @@ var createScene = function () {
 	
 	camera = new BABYLON.ArcRotateCamera("camera1", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
 	
-	camera.setPosition(new BABYLON.Vector3(0,10,-15));
+	camera.setPosition(new BABYLON.Vector3(0,7,-5));
 	camera.attachControl(canvas, true);
 	camera.speed = .25;
 
 	var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 	light.intensity = .7;
 
-	let i = 4;
-
+	scene.createDefaultEnvironment({createSkybox: false,});
+	
 	const map = [
 		["","17B","7A","4B"],
 		["2B","13B","12B","5B"],
@@ -72,6 +72,22 @@ var createScene = function () {
 		});
 	});
 		
+	// let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
+	// let spherematerial = new BABYLON.PBRMaterial("pbr", scene);
+
+	// const diffuseTex = new BABYLON.Texture("./textures/rocks_02/rocks_02_diff.jpg", scene);
+	// spherematerial.albedoTexture = diffuseTex;
+	// const normalTex = new BABYLON.Texture("./textures/rocks_02/rocks_02_nor.jpg", scene);
+	// spherematerial.bumpTexture = normalTex;
+	// spherematerial.invertNormalMapX;
+	// spherematerial.invertNormalMapY;
+	// const aoTex = new BABYLON.Texture("./textures/rocks_02/rocks_02_ao.jpg", scene);
+	// spherematerial.ambientTexture = aoTex;
+	// spherematerial.roughness = 1;
+	
+	// sphere.material = spherematerial;
+	// sphere.position.y = 2;
+
 	return scene;
 };
 
