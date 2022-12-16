@@ -41,6 +41,39 @@ const tilemap = {
 	"17B": {"position": "3",  "def": 3},
 	"18B": {"position": "3",  "def": 3}
 }
+const maps = [
+	{
+		"misson": 1,
+		"layout": 0,
+		"map": [
+			["","17B","7A","4B"],
+			["2B","13B","12B","5B"],
+			["16B","3B","8A","11B"],
+			["6A"]
+		]
+	},
+	{
+		"misson": 2,
+		"layout": 0,
+		"map": [
+			["","15B"],
+			["","10B","4A","9B"],
+			["7A","2B","16B","8A"],
+			["3B","12B","11B","1B"],
+			["6B","5B","18B",""]
+		]
+	},
+	{
+		"misson": 2,
+		"layout": 1,
+		"map": [
+			["","1A","7A","10B","5A"],
+			["6A","3B","12B","9B","17B"],
+			["","13A","15A","14A","18A"],
+			["","4A","11B","2B"]
+		]
+	}
+]
 
 var createScene = function () {
 	var scene = new BABYLON.Scene(engine);
@@ -48,26 +81,25 @@ var createScene = function () {
 	
 	camera = new BABYLON.ArcRotateCamera("camera1", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
 	
-	camera.setPosition(new BABYLON.Vector3(0,7,-5));
+	camera.setPosition(new BABYLON.Vector3(0,15,-20));
 	camera.attachControl(canvas, true);
 	camera.speed = .25;
 
+	
+
 	var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+	light.specular = new BABYLON.Color3.Gray();
 	light.intensity = .7;
 
 	scene.createDefaultEnvironment({createSkybox: false,});
 	
-	const map = [
-		["","17B","7A","4B"],
-		["2B","13B","12B","5B"],
-		["16B","3B","8A","11B"],
-		["6A","","",""]
-	]
-	map.forEach((mapy,idy) => {
+	map = maps[2]
+	map.map.forEach((mapy,idy) => {
+		console.log (mapy, idy)
 		mapy.forEach((mapx, idx) => {
 			if (mapx !== "") {
 				let tilen = tilemap[mapx].position;
-				if (tilen > -1)	addTile(tilen, idx, idy, scene);
+				addTile(map.layout, tilen, idx, idy, scene);
 			}
 		});
 	});
@@ -91,21 +123,37 @@ var createScene = function () {
 	return scene;
 };
 
-function addTile(tilen, idx, idy, scene) {
+function addTile(layout, tilen, idx, idy, scene) {
 	const faceUV = new Array(6);
 	for(let i=0; i<6; i++) {faceUV[i]=new BABYLON.Vector4(0,0,0,0);}
-	let tilex = (tilen % tile_columns)
-	let tiley = 2 - Math.floor(tilen / tile_columns)
-	faceUV[4] = new BABYLON.Vector4(tilex / tile_columns, tiley / tile_rows, (tilex + 1) / tile_columns, (tiley + 1) / tile_rows);
-
-	let tile = BABYLON.MeshBuilder.CreateBox("box", {height: 0.1, width: 5, depth: 5, faceUV: faceUV}, scene);
-	tile.position.x = 2.5 + ((idx - 2) * 5);
-	tile.position.z = (idy - 2 + ((idx % 2)/2)) * -5 
+	
+	if (tilen > -1) {
+		let tilex = (tilen % tile_columns)
+		let tiley = 2 - Math.floor(tilen / tile_columns)
+		faceUV[4] = new BABYLON.Vector4(tilex / tile_columns, tiley / tile_rows, (tilex + 1) / tile_columns, (tiley + 1) / tile_rows);
+	}
+	let tile = BABYLON.MeshBuilder.CreateBox("box", {height: 0.2, width: 5, depth: 5, faceUV: faceUV}, scene);
+	if (layout == 0) {
+		tile.position.x = 2.5 + ((idx - 2) * 5);
+		tile.position.z = (idy - 2 + ((idx % 2)/2)) * -5 
+	} else {
+		tile.position.x = ((idx + ((idy % 2)/2) - 2) * 5);
+		tile.position.z = (idy - 2) * -5
+	}
 	tile.rotation.y = (Math.PI/2)
 	
-	const material = new BABYLON.StandardMaterial("tm", scene);
-	const texture = new BABYLON.Texture("./img/resources3.jpg", scene);
-	material.diffuseTexture = texture;
+	const material = new BABYLON.StandardMaterial("material", scene);
+	material.diffuseTexture = new BABYLON.Texture("./img/resources3.jpg", scene);
+	material.bumpTexture = new BABYLON.Texture("./img/bevels.jpg", scene);
+	// material.ambientTexture = new BABYLON.Texture("./img/AmbientOcclusionMap.jpg", scene);
+	// const material = new BABYLON.PBRMaterial("material", scene);
+	// material.albedoTexture = new BABYLON.Texture("./img/resources3.jpg", scene);
+	// material.bumpTexture = new BABYLON.Texture("./img/NormalMap.jpg", scene);
+	// material.ambientTexture = new BABYLON.Texture("./img/AmbientOcclusionMap.jpg", scene);
+	// material.roughness=1;
+	// material.invertNormalMapX = true;
+	// material.invertNormalMapY = true;
+	// material.specularPower = 20;
 	tile.material = material;
 	
 }

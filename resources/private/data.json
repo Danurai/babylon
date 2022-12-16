@@ -1,0 +1,73 @@
+{
+	"tiles": {
+		"1A":  {"position": "-1", "def": 0},
+		"2A":  {"position": "-1", "def": 3},
+		"3A":  {"position": "-1", "def": -1},
+		"4A":  {"position": "-1", "def": 3},
+		"5A":  {"position": "9",  "def": 1},
+		"6A":  {"position": "10", "def": 1},
+		"7A":  {"position": "20", "def": 2},
+		"8A":  {"position": "19", "def": 2},
+		"9A":  {"position": "-1", "def": 3},
+		"10A": {"position": "1",  "def": 1},
+		"11A": {"position": "0",  "def": 1},
+		"12A": {"position": "8",  "def": 1},
+		"13A": {"position": "22", "def": 0},
+		"14A": {"position": "21", "def": 0},
+		"15A": {"position": "23", "def": 0},
+		"16A": {"position": "-1", "def": 3},
+		"17A": {"position": "-1", "def": 0},
+		"18A": {"position": "-1", "def": 0},
+		"1B":  {"position": "17", "def": 1},
+		"2B":  {"position": "18", "def": 2},
+		"3B":  {"position": "26", "def": 0},
+		"4B":  {"position": "4",  "def": 0},
+		"5B":  {"position": "2",  "def": 1},
+		"6B":  {"position": "6",  "def": 1},
+		"7B":  {"position": "11", "def": 1},
+		"8B":  {"position": "7",  "def": 1},
+		"9B":  {"position": "12", "def": 0},
+		"10B": {"position": "5",  "def": 0},
+		"11B": {"position": "13", "def": 0},
+		"12B": {"position": "14", "def": 0},
+		"13B": {"position": "15", "def": 1},
+		"14B": {"position": "16", "def": 1},
+		"15B": {"position": "24", "def": 2},
+		"16B": {"position": "25", "def": 2},
+		"17B": {"position": "3",  "def": 3},
+		"18B": {"position": "3",  "def": 3}
+	},
+	"maps": [
+		{
+			"misson": 1,
+			"layout": 0,
+			"map": [
+				["","17B","7A","4B"],
+				["2B","13B","12B","5B"],
+				["16B","3B","8A","11B"],
+				["6A"]
+			]
+		},
+		{
+			"misson": 2,
+			"layout": 0,
+			"map": [
+				["","15B"],
+				["","10B","4A","9B"],
+				["7A","2B","16B","8A"],
+				["3B","23B","11B","1B"],
+				["9B","8A","18B",""]
+			]
+		},
+		{
+			"misson": 2,
+			"layout": 1,
+			"map": [
+				["","1A","7A","10B","5A"],
+				["6A","3B","12B","9B","17B"],
+				["","13A","15A","14A","18A"],
+				["","4A","11B","2B"]
+			]
+		}
+	]
+}
