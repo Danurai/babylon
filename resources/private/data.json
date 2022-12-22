@@ -37,10 +37,33 @@
 		"17B": {"position": "3",  "def": 3},
 		"18B": {"position": "3",  "def": 3}
 	},
-	"maps": [
+	"scenarios": [
 		{
 			"misson": 1,
 			"layout": 0,
+			"initiative": "a",
+			"decks": {
+				"a": {
+					"ps": {"d": 1},
+					"sla": {"d": 1},
+					"slb": {"d": 1},
+					"rma": {"d": 1, "s": 4},
+					"rmb": {"d": 1, "s": 4},
+					"sca": {"d": 1, "s": 2},
+					"scb": {"d": 1, "s": 2},
+					"fow": {"d": 2, "s": 8}
+				},
+				"b": {
+					"ps": {"d": 1},
+					"sla": {"d": 1},
+					"slb": {"d": 1},
+					"rma": {"d": 1, "s": 4},
+					"rmb": {"d": 1, "s": 4},
+					"sca": {"d": 1, "s": 2},
+					"scb": {"d": 1, "s": 2},
+					"fow": {"d": 2, "s": 8}
+				}
+			},
 			"map": [
 				["","17B","7A","4B"],
 				["2B","13B","12B","5B"],
@@ -69,5 +92,74 @@
 				["","4A","11B","2B"]
 			]
 		}
-	]
+	],
+	"forces": {
+		"ps": {
+			"name": "Platoon Sergeant",
+			"type": "ps"
+		},
+		"pg": {
+			"name": "Platoon Guide",
+			"type": "pg"
+		},
+		"sla": {
+			"name": "Squad Leader A",
+			"type": "sl"
+		},
+		"slb": {
+			"name": "Squad Leader B",
+			"type": "sl"
+		},
+		"slc": {
+			"name": "Squad Leader C",
+			"type": "sl"
+		},
+		"rma": {
+			"name": "Rifleman A",
+			"type": "rm"
+		},
+		"rmb": {
+			"name": "Rifleman B",
+			"type": "rm"
+		},
+		"rmc": {
+			"name": "Rifleman C",
+			"type": "rm"
+		},
+		"sca": {
+			"name": "Scout A",
+			"type": "sc"
+		},
+		"scb": {
+			"name": "Scout B",
+			"type": "sc"
+		},
+		"scc": {
+			"name": "Scout C",
+			"type": "sc"
+		},
+		"mga": {
+			"name": "Machine Gun A",
+			"type": "mg"
+		},
+		"mgb": {
+			"name": "Machine Gun B",
+			"type": "mg"
+		},
+		"mgc": {
+			"name": "Machine Gun C",
+			"type": "mg"
+		},
+		"mo": {
+			"name": "Mortar",
+			"type": "mo"
+		},
+		"sn": {
+			"name": "Sniper",
+			"type": "sn"
+		},
+		"fow": {
+			"name": "Fog of War"
+		}
+	}
 }
